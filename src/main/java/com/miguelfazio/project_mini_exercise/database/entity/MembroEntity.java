@@ -17,6 +17,6 @@ public class MembroEntity {
     @Column(columnDefinition = "VARCHAR(255)", nullable = false)
     private String endereco;
 
-@Column(columnDefinition = "VARCHAR(12)", nullable = false)
+    @Column(columnDefinition = "VARCHAR(12)", nullable = false)
     private String telefone;
 }
