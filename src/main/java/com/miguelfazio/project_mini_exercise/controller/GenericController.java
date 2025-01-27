@@ -22,23 +22,33 @@ public class GenericController<E, DTO, S extends GenericService<E, DTO>> {
 
     @GetMapping
     public ResponseEntity<List<E>> getAll() {
-       return ResponseEntity.ok(service.getAll());
+       List<E> entities = service.getAll();
+       return ResponseEntity.ok(entities);
     }
 
     @PostMapping
     public ResponseEntity<E> create(@RequestBody DTO entity) {
-        E createdEntity = service.create(entity);
-        return ResponseEntity.status(201).body(createdEntity);
+       try {
+           E createdEntity = service.create(entity);
+           return ResponseEntity.status(201).body(createdEntity);
+       } catch (Exception e) {
+           return ResponseEntity.status(400).build();
+       }
    }
 
     @PutMapping("/{id}")
     public ResponseEntity<E> update(@PathVariable Long id, @RequestBody DTO entity) {
-       E updatedEntinty = service.alter(id, entity);
-       return updatedEntinty != null ? ResponseEntity.ok(updatedEntinty) : ResponseEntity.notFound().build();
+       E updatedEntity = service.alter(id, entity);
+       return updatedEntity != null ? ResponseEntity.ok(updatedEntity) : ResponseEntity.notFound().build();
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> delete(@PathVariable Long id) {
-       return ResponseEntity.ok(service.delete(id));
+       try {
+           service.delete(id);
+           return ResponseEntity.noContent().build();
+       } catch (Exception e) {
+           return ResponseEntity.status(400).build();
+       }
     }
 }
