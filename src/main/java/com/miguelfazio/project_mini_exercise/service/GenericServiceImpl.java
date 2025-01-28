@@ -40,12 +40,11 @@ public abstract class GenericServiceImpl<E, DTO, R extends JpaRepository<E, Long
         return repository.save(equalProperties(entityFound, data));
     }
 
-    public String delete(Long id) {
+    public void delete(Long id) {
         log.info("Deletando entidade com o ID: {}", id);
         E entity = repository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Entidade não encontrada com o ID: " + id));
         repository.delete(entity);
-        return "Entidade com ID: " + id + "deletada com sucesso";
     }
 
     public abstract E equalProperties(E entity, DTO data);
