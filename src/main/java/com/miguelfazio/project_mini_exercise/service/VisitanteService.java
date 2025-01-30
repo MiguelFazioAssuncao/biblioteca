@@ -27,4 +27,9 @@ public class VisitanteService extends GenericServiceImpl<VisitanteEntity, Visita
     public VisitanteEntity newEntity() {
         return new VisitanteEntity();
     }
+
+    @Override
+    public boolean exists(VisitanteEntity entity) {
+        return false;
+    }
 }

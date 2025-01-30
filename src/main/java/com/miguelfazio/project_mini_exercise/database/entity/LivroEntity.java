@@ -18,6 +18,6 @@ public class LivroEntity {
     private String autor;
 
     @Column(columnDefinition = "INT")
-    private int anoPublicacao;
+    private Integer anoPublicacao;
 
 }

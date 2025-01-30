@@ -2,12 +2,15 @@ package com.miguelfazio.project_mini_exercise.service;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+
+import static java.nio.file.Files.exists;
 
 @Data
 @RequiredArgsConstructor
@@ -17,7 +20,7 @@ public abstract class GenericServiceImpl<E, DTO, R extends JpaRepository<E, Long
     private final R repository;
 
     public E get(Long id) {
-        log.info("Buscando entidade com o ID: {}", id);
+           log.info("GenericServiceImpl.get({}) -> Buscando entidade com o ID: ", id);
         return repository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Entidade não encontrada com o ID: " + id));
     }
@@ -29,6 +32,11 @@ public abstract class GenericServiceImpl<E, DTO, R extends JpaRepository<E, Long
 
     public E create(DTO entity) {
         log.info("Criando uma nova entidade");
+
+        if (exists(entity)) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Entidade já existe.");
+        }
+
         E entitySave = equalProperties(newEntity(), entity);
         return repository.save(entitySave);
     }
@@ -49,4 +57,5 @@ public abstract class GenericServiceImpl<E, DTO, R extends JpaRepository<E, Long
 
     public abstract E equalProperties(E entity, DTO data);
     public abstract E newEntity();
+    public abstract boolean exists(DTO entity);
 }

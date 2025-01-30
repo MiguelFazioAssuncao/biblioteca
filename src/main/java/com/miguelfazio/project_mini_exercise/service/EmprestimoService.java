@@ -43,4 +43,9 @@ public class EmprestimoService extends GenericServiceImpl<EmprestimoEntity, Empr
     public EmprestimoEntity newEntity() {
         return new EmprestimoEntity();
     }
+
+    @Override
+    public boolean exists(EmprestimoEntity entity) {
+        return false;
+    }
 }

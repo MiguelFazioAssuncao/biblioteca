@@ -31,4 +31,9 @@ public class LivroService extends GenericServiceImpl<LivroEntity, LivroEntity, L
     public  LivroEntity newEntity() {
         return new LivroEntity();
     }
+
+    @Override
+    public boolean exists(LivroEntity entity) {
+        return false;
+    }
 }

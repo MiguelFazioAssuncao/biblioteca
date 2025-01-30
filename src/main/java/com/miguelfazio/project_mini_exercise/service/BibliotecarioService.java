@@ -29,4 +29,10 @@ public class BibliotecarioService extends GenericServiceImpl<BibliotecarioEntity
     public BibliotecarioEntity newEntity() {
         return new BibliotecarioEntity();
     }
+
+    @Override
+    public boolean exists(BibliotecarioEntity entity) {
+        return false;
+    }
+
 }

@@ -8,4 +8,5 @@ public interface GenericService<E, DTO> {
     E create(DTO entity);
     E alter(Long id, DTO data);
     void delete(Long id);
+    boolean exists(DTO entity);
 }

@@ -31,4 +31,9 @@ public class MembroService extends GenericServiceImpl<MembroEntity, MembroEntity
     public MembroEntity newEntity() {
        return new MembroEntity();
     }
+
+    @Override
+    public boolean exists(MembroEntity entity) {
+        return false;
+    }
 }
