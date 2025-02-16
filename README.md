@@ -1,4 +1,4 @@
-# Project Mini Exercise 🚀
+# Gestão Biblioteca 🚀
 
 Este projeto é uma aplicação Spring Boot que gerencia **Bibliotecários**, **Livros**, **Empréstimos**, **Visitantes** e **Membros** em uma biblioteca. Ele inclui operações CRUD (Create, Read, Update, Delete) para todas as entidades, utilizando um banco de dados PostgreSQL.
 
